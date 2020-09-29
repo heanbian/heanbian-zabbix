@@ -10,9 +10,9 @@ JDK11+
 
 ```
 <dependency>
-	<groupId>com.heanbian</groupId>
-	<artifactId>zabbix-client</artifactId>
-	<version>1.0.0</version>
+  <groupId>com.heanbian</groupId>
+  <artifactId>zabbix-client</artifactId>
+  <version>1.0.1</version>
 </dependency>
 ```
 
@@ -20,7 +20,7 @@ JDK11+
 
 ```
 ZabbixTemplate template = new ZabbixTemplate(api_url,user,password);
+
 ```
 
-
-说明：基于ZABBIX API 5.0开发。
+说明：基于Zabbix API Version 5.0

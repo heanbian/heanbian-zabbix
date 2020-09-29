@@ -53,7 +53,7 @@ public class ZabbixTemplate {
 	private final String password;
 
 	private final RestTemplate restTemplate;
-	private String zabbixToken = null;
+	private String auth = null;
 
 	public ZabbixTemplate(String url, String user, String password) {
 		this(url, "2.0", user, password, new RestTemplate());
@@ -82,7 +82,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("history.get").setId(18).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("history.get").setId(18).setAuth(getAuth())
 				.setParams(zabbixHistoryGetRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -108,7 +108,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("trend.get").setId(17).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("trend.get").setId(17).setAuth(getAuth())
 				.setParams(zabbixTrendGetRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -131,7 +131,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("hostgroup.get").setId(16).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("hostgroup.get").setId(16).setAuth(getAuth())
 				.setParams(zabbixHostGroupGetRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -151,7 +151,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<List<String>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("hostgroup.delete").setId(15).setAuth(getZabbixToken()).setParams(groupids);
+		dto.setJsonrpc(jsonrpc).setMethod("hostgroup.delete").setId(15).setAuth(getAuth()).setParams(groupids);
 
 		HttpEntity<ZabbixRequest<List<String>>> request = new HttpEntity<>(dto, headers);
 		ResponseEntity<ZabbixResponse<ZabbixHostGroupGenericResponse>> response = restTemplate.exchange(url, POST,
@@ -171,7 +171,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<ZabbixHostGroupUpdateRequest> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("hostgroup.update").setId(14).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("hostgroup.update").setId(14).setAuth(getAuth())
 				.setParams(zabbixHostGroupUpdateRequest);
 
 		HttpEntity<ZabbixRequest<ZabbixHostGroupUpdateRequest>> request = new HttpEntity<>(dto, headers);
@@ -192,7 +192,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<ZabbixHostGroupCreateRequest> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("hostgroup.create").setId(13).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("hostgroup.create").setId(13).setAuth(getAuth())
 				.setParams(zabbixHostGroupCreateRequest);
 
 		HttpEntity<ZabbixRequest<ZabbixHostGroupCreateRequest>> request = new HttpEntity<>(dto, headers);
@@ -219,7 +219,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("hostinterface.get").setId(12).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("hostinterface.get").setId(12).setAuth(getAuth())
 				.setParams(zabbixHostInterfaceGetRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -239,8 +239,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<List<String>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("hostinterface.delete").setId(10).setAuth(getZabbixToken())
-				.setParams(interfaceids);
+		dto.setJsonrpc(jsonrpc).setMethod("hostinterface.delete").setId(10).setAuth(getAuth()).setParams(interfaceids);
 
 		HttpEntity<ZabbixRequest<List<String>>> request = new HttpEntity<>(dto, headers);
 		ResponseEntity<ZabbixResponse<ZabbixHostInterfaceGenericResponse>> response = restTemplate.exchange(url, POST,
@@ -256,7 +255,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<ZabbixHostInterfaceCreateRequest> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("hostinterface.create").setId(9).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("hostinterface.create").setId(9).setAuth(getAuth())
 				.setParams(zabbixHostInterfaceCreateRequest);
 
 		HttpEntity<ZabbixRequest<ZabbixHostInterfaceCreateRequest>> request = new HttpEntity<>(dto, headers);
@@ -277,7 +276,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<ZabbixHostInterfaceUpdateRequest> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("hostinterface.update").setId(11).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("hostinterface.update").setId(11).setAuth(getAuth())
 				.setParams(zabbixHostInterfaceUpdateRequest);
 
 		HttpEntity<ZabbixRequest<ZabbixHostInterfaceUpdateRequest>> request = new HttpEntity<>(dto, headers);
@@ -297,7 +296,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<List<String>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("item.delete").setId(4).setAuth(getZabbixToken()).setParams(itemids);
+		dto.setJsonrpc(jsonrpc).setMethod("item.delete").setId(4).setAuth(getAuth()).setParams(itemids);
 
 		HttpEntity<ZabbixRequest<List<String>>> request = new HttpEntity<>(dto, headers);
 		ResponseEntity<ZabbixResponse<ZabbixItemGenericResponse>> response = restTemplate.exchange(url, POST, request,
@@ -312,7 +311,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("item.create").setId(3).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("item.create").setId(3).setAuth(getAuth())
 				.setParams(zabbixItemCreateRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -328,7 +327,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("item.update").setId(5).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("item.update").setId(5).setAuth(getAuth())
 				.setParams(zabbixItemUpdateRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -344,7 +343,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("item.get").setId(6).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("item.get").setId(6).setAuth(getAuth())
 				.setParams(zabbixItemGetRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -364,7 +363,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("host.get").setId(2).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("host.get").setId(2).setAuth(getAuth())
 				.setParams(zabbixHostGetRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -380,7 +379,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("host.create").setId(7).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("host.create").setId(7).setAuth(getAuth())
 				.setParams(zabbixHostCreateRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -395,7 +394,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("host.update").setId(8).setAuth(getZabbixToken())
+		dto.setJsonrpc(jsonrpc).setMethod("host.update").setId(8).setAuth(getAuth())
 				.setParams(zabbixHostUpdateRequest.getParams());
 
 		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
@@ -414,7 +413,7 @@ public class ZabbixTemplate {
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<List<String>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("host.delete").setId(4).setAuth(getZabbixToken()).setParams(hostids);
+		dto.setJsonrpc(jsonrpc).setMethod("host.delete").setId(4).setAuth(getAuth()).setParams(hostids);
 
 		HttpEntity<ZabbixRequest<List<String>>> request = new HttpEntity<>(dto, headers);
 		ResponseEntity<ZabbixResponse<ZabbixHostGenericResponse>> response = restTemplate.exchange(url, POST, request,
@@ -424,27 +423,35 @@ public class ZabbixTemplate {
 		return response.getBody();
 	}
 
-	private String getZabbixToken() {
-		if (this.zabbixToken == null) {
-			createZabbixToken();
+	public String getAuth() {
+		if (this.auth == null) {
+			this.auth = this.userLogin(this.user, this.password).getResult();
 		}
-		return this.zabbixToken;
+		return this.auth;
 	}
 
-	private void createZabbixToken() {
+	public ZabbixTemplate setAuth(String auth) {
+		this.auth = auth;
+		return this;
+	}
+
+	public ZabbixResponse<String> userLogin(String user, String password) {
+		return this.userLogin(new ZabbixUserLogin(user, password));
+	}
+
+	public ZabbixResponse<String> userLogin(ZabbixUserLogin zabbixUserLogin) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
 		ZabbixRequest<ZabbixUserLogin> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod("user.login").setId(1).setParams(new ZabbixUserLogin(user, password));
+		dto.setJsonrpc(jsonrpc).setMethod("user.login").setId(1).setParams(zabbixUserLogin);
 
 		HttpEntity<ZabbixRequest<ZabbixUserLogin>> request = new HttpEntity<>(dto, headers);
 		ResponseEntity<ZabbixResponse<String>> response = restTemplate.exchange(url, POST, request,
 				new ParameterizedTypeReference<ZabbixResponse<String>>() {
 				});
 
-		ZabbixResponse<String> result = response.getBody();
-		this.zabbixToken = result.getResult();
+		return response.getBody();
 	}
 
 }
