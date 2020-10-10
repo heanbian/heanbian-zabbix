@@ -27,6 +27,11 @@ public class ZabbixHostCreateRequest {
 		return this;
 	}
 
+	public ZabbixHostCreateRequest setProxyid(String proxyid) {
+		this.params.put("proxy_hostid", proxyid);
+		return this;
+	}
+
 	/**
 	 * 
 	 * @param available 0 - (default) unknown; 1 - available; 2 - unavailable.

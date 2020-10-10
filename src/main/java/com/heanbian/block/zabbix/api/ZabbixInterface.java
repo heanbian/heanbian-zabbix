@@ -25,6 +25,11 @@ public class ZabbixInterface {
 
 	private ZabbixInterfaceDetails details;
 
+	public ZabbixInterface() {
+		this.ip = "";
+		this.dns = "";
+	}
+
 	public int getType() {
 		return type;
 	}
