@@ -5,17 +5,17 @@ public class ZabbixInterface {
 	/**
 	 * 1 - agent;2 - SNMP;3 - IPMI;4 - JMX.
 	 */
-	private int type = 2;
+	private int type;
 
 	/**
 	 * 0 - not default; 1 - default.
 	 */
-	private int main = 1;
+	private int main;
 
 	/**
 	 * 0 - DNS;1 - IP
 	 */
-	private int useip = 1;
+	private int useip;
 
 	private String ip;
 
@@ -26,6 +26,9 @@ public class ZabbixInterface {
 	private ZabbixInterfaceDetails details;
 
 	public ZabbixInterface() {
+		this.type = 2;
+		this.main = 1;
+		this.useip = 1;
 		this.ip = "";
 		this.dns = "";
 	}
