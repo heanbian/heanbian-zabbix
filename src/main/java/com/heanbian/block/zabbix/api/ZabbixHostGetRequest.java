@@ -13,6 +13,11 @@ public class ZabbixHostGetRequest {
 		return params;
 	}
 
+	public ZabbixHostGetRequest addField(String fieldName, Object fieldValue) {
+		this.params.put(fieldName, fieldValue);
+		return this;
+	}
+
 	public ZabbixHostGetRequest setSelectGroups(String selectGroups) {
 		this.params.put("selectGroups", selectGroups);
 		return this;

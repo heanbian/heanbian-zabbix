@@ -20,6 +20,11 @@ public class ZabbixTrendGetRequest {
 		return params;
 	}
 
+	public ZabbixTrendGetRequest addField(String fieldName, Object fieldValue) {
+		this.params.put(fieldName, fieldValue);
+		return this;
+	}
+
 	public ZabbixTrendGetRequest setOutput(String... output) {
 		this.params.put("output", Arrays.asList(output));
 		return this;

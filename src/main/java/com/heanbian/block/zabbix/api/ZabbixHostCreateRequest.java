@@ -22,6 +22,11 @@ public class ZabbixHostCreateRequest {
 		return params;
 	}
 
+	public ZabbixHostCreateRequest addField(String fieldName, Object fieldValue) {
+		this.params.put(fieldName, fieldValue);
+		return this;
+	}
+
 	public ZabbixHostCreateRequest setHost(String host) {
 		this.params.put("host", host);
 		return this;

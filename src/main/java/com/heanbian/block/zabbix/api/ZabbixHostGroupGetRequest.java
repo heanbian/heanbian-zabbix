@@ -13,6 +13,11 @@ public class ZabbixHostGroupGetRequest {
 		return params;
 	}
 
+	public ZabbixHostGroupGetRequest addField(String fieldName, Object fieldValue) {
+		this.params.put(fieldName, fieldValue);
+		return this;
+	}
+
 	/**
 	 * 
 	 * @param output "extend"

@@ -17,6 +17,11 @@ public class ZabbixHistoryGetRequest {
 		return params;
 	}
 
+	public ZabbixHistoryGetRequest addField(String fieldName, Object fieldValue) {
+		this.params.put(fieldName, fieldValue);
+		return this;
+	}
+
 	public ZabbixHistoryGetRequest setOutput(String... output) {
 		this.params.put("output", Arrays.asList(output));
 		return this;

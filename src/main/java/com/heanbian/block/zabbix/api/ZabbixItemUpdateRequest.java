@@ -12,6 +12,11 @@ public class ZabbixItemUpdateRequest {
 		return params;
 	}
 
+	public ZabbixItemUpdateRequest addField(String fieldName, Object fieldValue) {
+		this.params.put(fieldName, fieldValue);
+		return this;
+	}
+
 	public ZabbixItemUpdateRequest setItemid(String itemid) {
 		this.params.put("itemid", itemid);
 		return this;

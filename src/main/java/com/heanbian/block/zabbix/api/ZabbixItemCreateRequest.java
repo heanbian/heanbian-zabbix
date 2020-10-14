@@ -12,6 +12,11 @@ public class ZabbixItemCreateRequest {
 		return params;
 	}
 
+	public ZabbixItemCreateRequest addField(String fieldName, Object fieldValue) {
+		this.params.put(fieldName, fieldValue);
+		return this;
+	}
+
 	public ZabbixItemCreateRequest setName(String name) {
 		this.params.put("name", name);
 		return this;

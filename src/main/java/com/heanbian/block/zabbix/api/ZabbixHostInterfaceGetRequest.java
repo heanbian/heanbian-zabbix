@@ -11,6 +11,11 @@ public class ZabbixHostInterfaceGetRequest {
 		return params;
 	}
 
+	public ZabbixHostInterfaceGetRequest addField(String fieldName, Object fieldValue) {
+		this.params.put(fieldName, fieldValue);
+		return this;
+	}
+
 	public ZabbixHostInterfaceGetRequest setOutput(String output) {
 		this.params.put("output", output);
 		return this;

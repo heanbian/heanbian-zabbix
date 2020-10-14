@@ -12,6 +12,11 @@ public class ZabbixHostUpdateRequest {
 		return params;
 	}
 
+	public ZabbixHostUpdateRequest addField(String fieldName, Object fieldValue) {
+		this.params.put(fieldName, fieldValue);
+		return this;
+	}
+
 	public ZabbixHostUpdateRequest setHostid(String hostid) {
 		this.params.put("hostid", hostid);
 		return this;
