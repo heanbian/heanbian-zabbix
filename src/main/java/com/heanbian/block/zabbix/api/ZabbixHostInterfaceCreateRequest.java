@@ -16,6 +16,11 @@ public class ZabbixHostInterfaceCreateRequest {
 
 	private int useip;
 
+	public ZabbixHostInterfaceCreateRequest() {
+		this.ip = "";
+		this.dns = "";
+	}
+
 	public String getHostid() {
 		return hostid;
 	}
