@@ -67,17 +67,17 @@ public class ZabbixTemplate {
 		this.restTemplate = restTemplate;
 	}
 
-	public ZabbixResponse<List<ZabbixHistoryGetResponse>> historyGet(String... itemids) {
+	public List<ZabbixHistoryGetResponse> historyGet(String... itemids) {
 		return this.historyGet(Arrays.asList(itemids));
 	}
 
-	public ZabbixResponse<List<ZabbixHistoryGetResponse>> historyGet(List<String> itemids) {
+	public List<ZabbixHistoryGetResponse> historyGet(List<String> itemids) {
 		ZabbixHistoryGetRequest zabbixHistoryGetRequest = new ZabbixHistoryGetRequest();
 		zabbixHistoryGetRequest.setItemids(itemids);
 		return this.historyGet(zabbixHistoryGetRequest);
 	}
 
-	public ZabbixResponse<List<ZabbixHistoryGetResponse>> historyGet(ZabbixHistoryGetRequest zabbixHistoryGetRequest) {
+	public List<ZabbixHistoryGetResponse> historyGet(ZabbixHistoryGetRequest zabbixHistoryGetRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -90,20 +90,22 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<List<ZabbixHistoryGetResponse>>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<List<ZabbixHistoryGetResponse>> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<List<ZabbixTrendGetResponse>> trendGet(String... itemids) {
+	public List<ZabbixTrendGetResponse> trendGet(String... itemids) {
 		return this.trendGet(Arrays.asList(itemids));
 	}
 
-	public ZabbixResponse<List<ZabbixTrendGetResponse>> trendGet(List<String> itemids) {
+	public List<ZabbixTrendGetResponse> trendGet(List<String> itemids) {
 		ZabbixTrendGetRequest zabbixTrendGetRequest = new ZabbixTrendGetRequest();
 		zabbixTrendGetRequest.setItemids(itemids);
 		return this.trendGet(zabbixTrendGetRequest);
 	}
 
-	public ZabbixResponse<List<ZabbixTrendGetResponse>> trendGet(ZabbixTrendGetRequest zabbixTrendGetRequest) {
+	public List<ZabbixTrendGetResponse> trendGet(ZabbixTrendGetRequest zabbixTrendGetRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -116,17 +118,18 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<List<ZabbixTrendGetResponse>>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<List<ZabbixTrendGetResponse>> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<List<ZabbixHostGroupGetResponse>> hostGroupGet(String... names) {
+	public List<ZabbixHostGroupGetResponse> hostGroupGet(String... names) {
 		ZabbixHostGroupGetRequest zabbixHostGroupGetRequest = new ZabbixHostGroupGetRequest();
 		zabbixHostGroupGetRequest.setFilterNames(names).setOutput("extend");
 		return this.hostGroupGet(zabbixHostGroupGetRequest);
 	}
 
-	public ZabbixResponse<List<ZabbixHostGroupGetResponse>> hostGroupGet(
-			ZabbixHostGroupGetRequest zabbixHostGroupGetRequest) {
+	public List<ZabbixHostGroupGetResponse> hostGroupGet(ZabbixHostGroupGetRequest zabbixHostGroupGetRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -139,14 +142,16 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<List<ZabbixHostGroupGetResponse>>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<List<ZabbixHostGroupGetResponse>> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixHostGroupGenericResponse> hostGroupDelete(String... groupids) {
+	public ZabbixHostGroupGenericResponse hostGroupDelete(String... groupids) {
 		return this.hostGroupDelete(Arrays.asList(groupids));
 	}
 
-	public ZabbixResponse<ZabbixHostGroupGenericResponse> hostGroupDelete(List<String> groupids) {
+	public ZabbixHostGroupGenericResponse hostGroupDelete(List<String> groupids) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -158,15 +163,16 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<ZabbixHostGroupGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixHostGroupGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixHostGroupGenericResponse> hostGroupUpdate(String groupid, String name) {
+	public ZabbixHostGroupGenericResponse hostGroupUpdate(String groupid, String name) {
 		return this.hostGroupUpdate(new ZabbixHostGroupUpdateRequest(groupid, name));
 	}
 
-	public ZabbixResponse<ZabbixHostGroupGenericResponse> hostGroupUpdate(
-			ZabbixHostGroupUpdateRequest zabbixHostGroupUpdateRequest) {
+	public ZabbixHostGroupGenericResponse hostGroupUpdate(ZabbixHostGroupUpdateRequest zabbixHostGroupUpdateRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -179,15 +185,16 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<ZabbixHostGroupGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixHostGroupGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixHostGroupGenericResponse> hostGroupCreate(String name) {
+	public ZabbixHostGroupGenericResponse hostGroupCreate(String name) {
 		return this.hostGroupCreate(new ZabbixHostGroupCreateRequest(name));
 	}
 
-	public ZabbixResponse<ZabbixHostGroupGenericResponse> hostGroupCreate(
-			ZabbixHostGroupCreateRequest zabbixHostGroupCreateRequest) {
+	public ZabbixHostGroupGenericResponse hostGroupCreate(ZabbixHostGroupCreateRequest zabbixHostGroupCreateRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -200,20 +207,22 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<ZabbixHostGroupGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixHostGroupGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<List<ZabbixHostInterfaceGetResponse>> hostInterfaceGet(String hostid) {
+	public List<ZabbixHostInterfaceGetResponse> hostInterfaceGet(String hostid) {
 		return this.hostInterfaceGet("extend", hostid);
 	}
 
-	public ZabbixResponse<List<ZabbixHostInterfaceGetResponse>> hostInterfaceGet(String output, String hostids) {
+	public List<ZabbixHostInterfaceGetResponse> hostInterfaceGet(String output, String hostids) {
 		ZabbixHostInterfaceGetRequest zabbixHostInterfaceGetRequest = new ZabbixHostInterfaceGetRequest();
 		zabbixHostInterfaceGetRequest.setOutput(output).setHostids(hostids);
 		return this.hostInterfaceGet(zabbixHostInterfaceGetRequest);
 	}
 
-	public ZabbixResponse<List<ZabbixHostInterfaceGetResponse>> hostInterfaceGet(
+	public List<ZabbixHostInterfaceGetResponse> hostInterfaceGet(
 			ZabbixHostInterfaceGetRequest zabbixHostInterfaceGetRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -227,14 +236,16 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<List<ZabbixHostInterfaceGetResponse>>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<List<ZabbixHostInterfaceGetResponse>> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixHostInterfaceGenericResponse> hostInterfaceDelete(String... interfaceids) {
+	public ZabbixHostInterfaceGenericResponse hostInterfaceDelete(String... interfaceids) {
 		return this.hostInterfaceDelete(Arrays.asList(interfaceids));
 	}
 
-	public ZabbixResponse<ZabbixHostInterfaceGenericResponse> hostInterfaceDelete(List<String> interfaceids) {
+	public ZabbixHostInterfaceGenericResponse hostInterfaceDelete(List<String> interfaceids) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -246,10 +257,12 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<ZabbixHostInterfaceGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixHostInterfaceGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixHostInterfaceGenericResponse> hostInterfaceCreate(
+	public ZabbixHostInterfaceGenericResponse hostInterfaceCreate(
 			ZabbixHostInterfaceCreateRequest zabbixHostInterfaceCreateRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -263,14 +276,16 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<ZabbixHostInterfaceGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixHostInterfaceGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixHostInterfaceGenericResponse> hostInterfaceUpdate(String interfaceid, String port) {
+	public ZabbixHostInterfaceGenericResponse hostInterfaceUpdate(String interfaceid, String port) {
 		return this.hostInterfaceUpdate(new ZabbixHostInterfaceUpdateRequest(interfaceid, port));
 	}
 
-	public ZabbixResponse<ZabbixHostInterfaceGenericResponse> hostInterfaceUpdate(
+	public ZabbixHostInterfaceGenericResponse hostInterfaceUpdate(
 			ZabbixHostInterfaceUpdateRequest zabbixHostInterfaceUpdateRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -284,14 +299,16 @@ public class ZabbixTemplate {
 				request, new ParameterizedTypeReference<ZabbixResponse<ZabbixHostInterfaceGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixHostInterfaceGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixItemGenericResponse> itemDelete(String... itemids) {
+	public ZabbixItemGenericResponse itemDelete(String... itemids) {
 		return this.itemDelete(Arrays.asList(itemids));
 	}
 
-	public ZabbixResponse<ZabbixItemGenericResponse> itemDelete(List<String> itemids) {
+	public ZabbixItemGenericResponse itemDelete(List<String> itemids) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -303,10 +320,12 @@ public class ZabbixTemplate {
 				new ParameterizedTypeReference<ZabbixResponse<ZabbixItemGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixItemGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixItemGenericResponse> itemCreate(ZabbixItemCreateRequest zabbixItemCreateRequest) {
+	public ZabbixItemGenericResponse itemCreate(ZabbixItemCreateRequest zabbixItemCreateRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -319,10 +338,12 @@ public class ZabbixTemplate {
 				new ParameterizedTypeReference<ZabbixResponse<ZabbixItemGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixItemGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixItemGenericResponse> itemUpdate(ZabbixItemUpdateRequest zabbixItemUpdateRequest) {
+	public ZabbixItemGenericResponse itemUpdate(ZabbixItemUpdateRequest zabbixItemUpdateRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -335,10 +356,12 @@ public class ZabbixTemplate {
 				new ParameterizedTypeReference<ZabbixResponse<ZabbixItemGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixItemGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<List<ZabbixItemGetResponse>> itemGet(ZabbixItemGetRequest zabbixItemGetRequest) {
+	public List<ZabbixItemGetResponse> itemGet(ZabbixItemGetRequest zabbixItemGetRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -350,15 +373,18 @@ public class ZabbixTemplate {
 		ResponseEntity<ZabbixResponse<List<ZabbixItemGetResponse>>> response = restTemplate.exchange(url, POST, request,
 				new ParameterizedTypeReference<ZabbixResponse<List<ZabbixItemGetResponse>>>() {
 				});
-		return response.getBody();
+
+		ZabbixResponse<List<ZabbixItemGetResponse>> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<List<ZabbixHostGetResponse>> hostGet(String... hosts) {
+	public List<ZabbixHostGetResponse> hostGet(String... hosts) {
 		ZabbixHostGetRequest zabbixHostGetRequest = new ZabbixHostGetRequest();
 		return this.hostGet(zabbixHostGetRequest.setFilterHosts(hosts));
 	}
 
-	public ZabbixResponse<List<ZabbixHostGetResponse>> hostGet(ZabbixHostGetRequest zabbixHostGetRequest) {
+	public List<ZabbixHostGetResponse> hostGet(ZabbixHostGetRequest zabbixHostGetRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -371,10 +397,12 @@ public class ZabbixTemplate {
 				new ParameterizedTypeReference<ZabbixResponse<List<ZabbixHostGetResponse>>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<List<ZabbixHostGetResponse>> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixHostGenericResponse> hostCreate(ZabbixHostCreateRequest zabbixHostCreateRequest) {
+	public ZabbixHostGenericResponse hostCreate(ZabbixHostCreateRequest zabbixHostCreateRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -386,10 +414,13 @@ public class ZabbixTemplate {
 		ResponseEntity<ZabbixResponse<ZabbixHostGenericResponse>> response = restTemplate.exchange(url, POST, request,
 				new ParameterizedTypeReference<ZabbixResponse<ZabbixHostGenericResponse>>() {
 				});
-		return response.getBody();
+
+		ZabbixResponse<ZabbixHostGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixHostGenericResponse> hostUpdate(ZabbixHostUpdateRequest zabbixHostUpdateRequest) {
+	public ZabbixHostGenericResponse hostUpdate(ZabbixHostUpdateRequest zabbixHostUpdateRequest) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -401,14 +432,17 @@ public class ZabbixTemplate {
 		ResponseEntity<ZabbixResponse<ZabbixHostGenericResponse>> response = restTemplate.exchange(url, POST, request,
 				new ParameterizedTypeReference<ZabbixResponse<ZabbixHostGenericResponse>>() {
 				});
-		return response.getBody();
+
+		ZabbixResponse<ZabbixHostGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
-	public ZabbixResponse<ZabbixHostGenericResponse> hostDelete(String... hostids) {
+	public ZabbixHostGenericResponse hostDelete(String... hostids) {
 		return this.hostDelete(Arrays.asList(hostids));
 	}
 
-	public ZabbixResponse<ZabbixHostGenericResponse> hostDelete(List<String> hostids) {
+	public ZabbixHostGenericResponse hostDelete(List<String> hostids) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -420,12 +454,14 @@ public class ZabbixTemplate {
 				new ParameterizedTypeReference<ZabbixResponse<ZabbixHostGenericResponse>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<ZabbixHostGenericResponse> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
 	public String getAuth() {
 		if (this.auth == null) {
-			this.auth = this.userLogin(this.user, this.password).getResult();
+			this.auth = this.userLogin(this.user, this.password);
 		}
 		return this.auth;
 	}
@@ -435,11 +471,11 @@ public class ZabbixTemplate {
 		return this;
 	}
 
-	public ZabbixResponse<String> userLogin(String user, String password) {
+	public String userLogin(String user, String password) {
 		return this.userLogin(new ZabbixUserLogin(user, password));
 	}
 
-	public ZabbixResponse<String> userLogin(ZabbixUserLogin zabbixUserLogin) {
+	public String userLogin(ZabbixUserLogin zabbixUserLogin) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -451,7 +487,14 @@ public class ZabbixTemplate {
 				new ParameterizedTypeReference<ZabbixResponse<String>>() {
 				});
 
-		return response.getBody();
+		ZabbixResponse<String> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
+	private <T> void printError(ZabbixResponse<T> result) {
+		if (result.getError() != null) {
+			throw new IllegalArgumentException(result.getError().getData());
+		}
+	}
 }
