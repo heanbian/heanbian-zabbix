@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import com.heanbian.block.zabbix.api.ZabbixApplicationGetResponse;
+import com.heanbian.block.zabbix.api.ZabbixGenericRequest;
 import com.heanbian.block.zabbix.api.ZabbixHistoryGetRequest;
 import com.heanbian.block.zabbix.api.ZabbixHistoryGetResponse;
 import com.heanbian.block.zabbix.api.ZabbixHostCreateRequest;
@@ -65,6 +67,24 @@ public class ZabbixTemplate {
 		this.user = user;
 		this.password = password;
 		this.restTemplate = restTemplate;
+	}
+
+	public List<ZabbixApplicationGetResponse> applicationGet(ZabbixGenericRequest zabbixGenericRequest) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+
+		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
+		dto.setJsonrpc(jsonrpc).setMethod("application.get").setId(21).setAuth(getAuth())
+				.setParams(zabbixGenericRequest.getParams());
+
+		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
+		ResponseEntity<ZabbixResponse<List<ZabbixApplicationGetResponse>>> response = restTemplate.exchange(url, POST,
+				request, new ParameterizedTypeReference<ZabbixResponse<List<ZabbixApplicationGetResponse>>>() {
+				});
+
+		ZabbixResponse<List<ZabbixApplicationGetResponse>> result = response.getBody();
+		printError(result);
+		return result.getResult();
 	}
 
 	public List<ZabbixHistoryGetResponse> historyGet(String... itemids) {
