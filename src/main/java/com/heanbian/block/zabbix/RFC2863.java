@@ -1,4 +1,4 @@
-package com.joywayi.dccp.monitor.zabbix;
+package com.heanbian.block.zabbix;
 
 import java.util.Collections;
 import java.util.HashMap;
