@@ -10,9 +10,9 @@ JDK11+
 
 ```
 <dependency>
-  <groupId>com.heanbian</groupId>
-  <artifactId>zabbix-client</artifactId>
-  <version>1.0.7</version>
+  <groupId>com.heanbian.block</groupId>
+  <artifactId>heanbian-zabbix</artifactId>
+  <version>1.0.0</version>
 </dependency>
 ```
 

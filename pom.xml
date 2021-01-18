@@ -4,14 +4,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.heanbian</groupId>
-	<artifactId>zabbix-client</artifactId>
-	<version>1.1.09999,</version>
+	<groupId>com.heanbian.block</groupId>
+	<artifactId>heanbian-zabbix</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>zabbix-client</name>
-	<url>https://github.com/heanbian/zabbix-client</url>
-	<description>heanbian zabbix client component.</description>
+	<name>heanbian-zabbix</name>
+	<url>https://github.com/heanbian/heanbian-zabbix</url>
+	<description>heanbian zabbix component.</description>
 	<inceptionYear>2020</inceptionYear>
 
 	<organization>
@@ -41,14 +41,14 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:https://github.com/heanbian/zabbix-client.git</connection>
-		<developerConnection>scm:git:https://github.com/heanbian/zabbix-client.git</developerConnection>
-		<url>https://github.com/heanbian/zabbix-client</url>
+		<connection>scm:git:https://github.com/heanbian/heanbian-zabbix.git</connection>
+		<developerConnection>scm:git:https://github.com/heanbian/heanbian-zabbix.git</developerConnection>
+		<url>https://github.com/heanbian/heanbian-zabbix</url>
 	</scm>
 
 	<issueManagement>
 		<system>Github</system>
-		<url>https://github.com/heanbian/zabbix-client/issues</url>
+		<url>https://github.com/heanbian/heanbian-zabbix/issues</url>
 	</issueManagement>
 
 	<repositories>
