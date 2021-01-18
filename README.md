@@ -1,4 +1,4 @@
-# zabbix-client
+# heanbian-zabbix
 
 ## 前提条件
 
@@ -23,4 +23,4 @@ ZabbixTemplate template = new ZabbixTemplate(api_url,user,password);
 
 ```
 
-说明：基于Zabbix API Version 5.0
+说明：基于 ZABBIX API 5.0 LTS
