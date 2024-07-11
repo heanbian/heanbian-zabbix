@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class RFC2863 {
+	
+	private RFC2863() {}
 
 	private static final Map<String, String> _ifAdminStatus;
 	private static final Map<String, String> _ifOperStatus;

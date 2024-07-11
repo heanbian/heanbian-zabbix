@@ -4,14 +4,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.heanbian.block</groupId>
+	<groupId>com.heanbian</groupId>
 	<artifactId>heanbian-zabbix</artifactId>
-	<version>1.0.1</version>
+	<version>20.2</version>
 	<packaging>jar</packaging>
 
 	<name>heanbian-zabbix</name>
 	<url>https://github.com/heanbian/heanbian-zabbix</url>
-	<description>heanbian zabbix component.</description>
+	<description>heanbian-zabbix</description>
 	<inceptionYear>2020</inceptionYear>
 
 	<organization>
@@ -42,7 +42,8 @@
 
 	<scm>
 		<connection>scm:git:https://github.com/heanbian/heanbian-zabbix.git</connection>
-		<developerConnection>scm:git:https://github.com/heanbian/heanbian-zabbix.git</developerConnection>
+		<developerConnection>
+			scm:git:https://github.com/heanbian/heanbian-zabbix.git</developerConnection>
 		<url>https://github.com/heanbian/heanbian-zabbix</url>
 	</scm>
 
@@ -73,17 +74,17 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
-						<version>3.8.1</version>
+						<version>3.13.0</version>
 						<configuration>
 							<encoding>UTF-8</encoding>
-							<source>11</source>
-							<target>11</target>
+							<source>21</source>
+							<target>21</target>
 						</configuration>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
-						<version>3.2.1</version>
+						<version>3.3.1</version>
 						<executions>
 							<execution>
 								<id>attach-sources</id>
@@ -96,7 +97,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>
-						<version>3.2.0</version>
+						<version>3.7.0</version>
 						<executions>
 							<execution>
 								<id>attach-javadocs</id>
@@ -109,7 +110,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
+						<version>3.2.4</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
@@ -130,7 +131,18 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0-M3</version>
+				<version>3.5.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.7.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>sonatype-nexus-staging</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
 			</plugin>
 		</plugins>
 		<pluginManagement>
@@ -138,7 +150,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
-					<version>3.0.0-M1</version>
+					<version>3.1.0</version>
 					<configuration>
 						<mavenExecutorId>forked-path</mavenExecutorId>
 						<useReleaseProfile>false</useReleaseProfile>
@@ -164,8 +176,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jackson.version>2.12.2</jackson.version>
-		<spring-framework.version>5.3.4</spring-framework.version>
+		<jackson.version>2.17.2</jackson.version>
+		<spring-framework.version>6.1.10</spring-framework.version>
 		<arguments />
 	</properties>
 

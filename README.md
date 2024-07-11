@@ -2,7 +2,7 @@
 
 ## 前提条件
 
-JDK11+
+JDK 21
 
 ## pom.xml
 
@@ -10,9 +10,9 @@ JDK11+
 
 ```
 <dependency>
-  <groupId>com.heanbian.block</groupId>
+  <groupId>com.heanbian</groupId>
   <artifactId>heanbian-zabbix</artifactId>
-  <version>1.0.1</version>
+  <version>20.2</version>
 </dependency>
 ```
 

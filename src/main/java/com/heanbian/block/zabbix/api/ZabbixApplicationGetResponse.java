@@ -3,6 +3,7 @@ package com.heanbian.block.zabbix.api;
 import java.util.List;
 
 public class ZabbixApplicationGetResponse {
+	
 	private String applicationid;
 	private String hostid;
 	private String name;
