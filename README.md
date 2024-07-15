@@ -23,4 +23,4 @@ ZabbixTemplate template = new ZabbixTemplate(api_url,user,password);
 
 ```
 
-说明：基于 ZABBIX API 5.0 LTS
+说明：支持 `Zabbix API 5.0 LTS` 、`Zabbix API 6.0 LTS` 、`Zabbix API 7.0 LTS`
