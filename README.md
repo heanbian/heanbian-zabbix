@@ -6,7 +6,7 @@ JDK 21
 
 ## pom.xml
 
-具体版本，可以上Maven中央仓库查询
+具体版本，可以上[Maven中央仓库](https://repo1.maven.org/maven2/com/heanbian/heanbian-zabbix/)查询
 
 ```
 <dependency>
