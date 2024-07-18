@@ -6,13 +6,13 @@ JDK 21
 
 == pom.xml
 
-具体版本，可以上 https://repo1.maven.org/maven2/com/heanbian/heanbian-zabbix/[Maven Central]查询
+具体版本，可以上 https://repo1.maven.org/maven2/com/heanbian/heanbian-zabbix/[Maven Central] 查询
 
 ----
 <dependency>
   <groupId>com.heanbian</groupId>
   <artifactId>heanbian-zabbix</artifactId>
-  <version>21.1</version>
+  <version>21.2</version>
 </dependency>
 ----
 
