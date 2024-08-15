@@ -19,12 +19,6 @@ JDK 21
 == 使用示例
 
 ----
-ZabbixTemplate template = new ZabbixTemplate(api_url,user,password);
+ZabbixTemplate template = new ZabbixTemplate(api_url, username, password);
 
 ----
-
-说明支持:
-
-* Zabbix API 7.0 LTS
-* Zabbix API 6.0 LTS
-* Zabbix API 5.0 LTS

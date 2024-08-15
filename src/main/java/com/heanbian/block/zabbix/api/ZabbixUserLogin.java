@@ -2,17 +2,17 @@ package com.heanbian.block.zabbix.api;
 
 public class ZabbixUserLogin {
 
-	private String user;
+	private String username;
 
 	private String password;
 
-	public ZabbixUserLogin(String user, String password) {
-		this.user = user;
+	public ZabbixUserLogin(String username, String password) {
+		this.username = username;
 		this.password = password;
 	}
 
-	public String getUser() {
-		return user;
+	public String getUsername() {
+		return username;
 	}
 
 	public String getPassword() {

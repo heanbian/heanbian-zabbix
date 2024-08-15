@@ -5,9 +5,6 @@ public interface ZabbixMethod {
 	String APIINFO_VERSION = "apiinfo.version";
 
 	//
-	String APPLICATION_GET = "application.get";
-
-	//
 	String DISCOVERYRULE_CREATE = "discoveryrule.create";
 	String DISCOVERYRULE_DELETE = "discoveryrule.delete";
 	String DISCOVERYRULE_COPY = "discoveryrule.copy";

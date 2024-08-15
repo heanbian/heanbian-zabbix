@@ -13,8 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.heanbian.block.zabbix.api.ZabbixApplicationGetResponse;
-import com.heanbian.block.zabbix.api.ZabbixGenericRequest;
 import com.heanbian.block.zabbix.api.ZabbixHistoryGetRequest;
 import com.heanbian.block.zabbix.api.ZabbixHistoryGetResponse;
 import com.heanbian.block.zabbix.api.ZabbixHostCreateRequest;
@@ -45,40 +43,22 @@ public class ZabbixTemplate {
 
 	private final String url;
 	private final String jsonrpc;
-	private final String user;
+	private final String username;
 	private final String password;
 
 	private final RestTemplate restTemplate;
 	private String auth = null;
 
-	public ZabbixTemplate(String url, String user, String password) {
-		this(url, "2.0", user, password, new RestTemplate());
+	public ZabbixTemplate(String url, String username, String password) {
+		this(url, "2.0", username, password, new RestTemplate());
 	}
 
-	public ZabbixTemplate(String url, String jsonpc, String user, String password, RestTemplate restTemplate) {
+	public ZabbixTemplate(String url, String jsonpc, String username, String password, RestTemplate restTemplate) {
 		this.url = url;
 		this.jsonrpc = jsonpc;
-		this.user = user;
+		this.username = username;
 		this.password = password;
 		this.restTemplate = restTemplate;
-	}
-
-	public List<ZabbixApplicationGetResponse> applicationGet(ZabbixGenericRequest zabbixGenericRequest) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-
-		ZabbixRequest<Map<String, Object>> dto = new ZabbixRequest<>();
-		dto.setJsonrpc(jsonrpc).setMethod(ZabbixMethod.APPLICATION_GET).setAuth(getAuth())
-				.setParams(zabbixGenericRequest.getParams());
-
-		HttpEntity<ZabbixRequest<Map<String, Object>>> request = new HttpEntity<>(dto, headers);
-		ResponseEntity<ZabbixResponse<List<ZabbixApplicationGetResponse>>> response = restTemplate.exchange(url, POST,
-				request, new ParameterizedTypeReference<ZabbixResponse<List<ZabbixApplicationGetResponse>>>() {
-				});
-
-		ZabbixResponse<List<ZabbixApplicationGetResponse>> result = response.getBody();
-		printError(result);
-		return result.getResult();
 	}
 
 	public List<ZabbixHistoryGetResponse> historyGet(String... itemids) {
@@ -475,7 +455,7 @@ public class ZabbixTemplate {
 
 	public String getAuth() {
 		if (this.auth == null) {
-			this.auth = this.userLogin(this.user, this.password);
+			this.auth = this.userLogin(this.username, this.password);
 		}
 		return this.auth;
 	}
@@ -485,8 +465,8 @@ public class ZabbixTemplate {
 		return this;
 	}
 
-	public String userLogin(String user, String password) {
-		return this.userLogin(new ZabbixUserLogin(user, password));
+	public String userLogin(String username, String password) {
+		return this.userLogin(new ZabbixUserLogin(username, password));
 	}
 
 	public String userLogin(ZabbixUserLogin zabbixUserLogin) {
